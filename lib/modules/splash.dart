@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/modules/onboarding.dart';
+import 'package:fundfinder/shared/components.dart';
 import 'package:lottie/lottie.dart';
 
 class Splash_Screen extends StatefulWidget {
@@ -16,9 +17,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 5),(){
-      Navigator.pushAndRemoveUntil(
-          context, MaterialPageRoute(builder: (context) => Onborading_Screen(),),
-              (route) => false);
+      navigateAndFinish(context, Onborading_Screen());
     }
     );
   }
@@ -36,7 +35,7 @@ class _Splash_ScreenState extends State<Splash_Screen> {
           AnimatedTextKit(
             animatedTexts: [
               WavyAnimatedText('Found Finder',textStyle: TextStyle(
-                  fontSize: 65,
+                  fontSize: 50,
                   fontWeight: FontWeight.w400,
                   color: Color(0xffFF1F26)
               ),

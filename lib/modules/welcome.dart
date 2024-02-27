@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:fundfinder/layout/Investor/sign_up/sign_up.dart';
+import 'package:fundfinder/layout/startup/sign_up/sign_up1.dart';
 import 'package:fundfinder/shared/components.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,7 +24,7 @@ class Welcome_Screen extends StatelessWidget {
                 waveColor: Colors.blueAccent,
                 boxBackgroundColor: Colors.white,
                 textStyle: TextStyle(
-                  fontSize: 60.0,
+                  fontSize: 50.0,
                   fontWeight: FontWeight.bold,
                 ),
                 boxHeight: 200.0,
@@ -32,7 +34,8 @@ class Welcome_Screen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Lottie.asset('assets/images/animation_wel.json'),
+          Lottie.asset(
+              'assets/images/animation_wel.json'),
           const SizedBox(
             height: 30,
           ),
@@ -46,7 +49,10 @@ class Welcome_Screen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white
                   ),
-                  text: 'Startup', onPressed: (){}),
+                  text: 'Startup', onPressed: (){
+                navigateAndFinish(context, Sign_Up1());
+
+              }),
               defaultBottom(
                   width: MediaQuery.of(context).size.width*.40,
                   style: TextStyle(
@@ -54,7 +60,9 @@ class Welcome_Screen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white
                   ),
-                  text: 'Industry', onPressed: (){})
+                  text: 'Investor', onPressed: (){
+                    navigateAndFinish(context, Sign_Up());
+              })
             ],
           ),
         ],

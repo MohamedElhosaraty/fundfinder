@@ -46,12 +46,7 @@ class _Onborading_ScreenState extends State<Onborading_Screen> {
         actions: [
           TextButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Welcome_Screen(),
-                    ),
-                    (route) => false);
+               navigateAndFinish(context, const Welcome_Screen());
               },
               child: Text('Skip'))
         ],
@@ -127,18 +122,12 @@ class _Onborading_ScreenState extends State<Onborading_Screen> {
             ),
             defaultBottom(
               style: TextStyle(
-                  fontSize: 15,fontWeight: FontWeight.w500,color: Colors.white
+                  fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
               ),
-
                 text: isLast ? "Follow" : "Next",
                 onPressed: () {
                   if (isLast) {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Welcome_Screen(),
-                        ),
-                        (route) => false);
+                    navigateAndFinish(context, const Welcome_Screen());
                   } else {
                     controller.nextPage(
                         duration: Duration(milliseconds: 1000),
