@@ -29,7 +29,7 @@ Widget defaultTextFormFiled ({
   TextInputType keyBoard =TextInputType.emailAddress,
   TextEditingController? controller,
   Function(String)? onChanged ,
-  //Function(String)? validate,
+  String? Function(String?)? validate,
   Function()? onEditingComplete,
   Widget? suffixIcon ,
   Widget? prefixIcon,
@@ -48,7 +48,7 @@ Widget defaultTextFormFiled ({
       onChanged:onChanged,
       obscureText: obscureText,
      onTap: onTap,
-     // validator: validate,
+      validator: validate,
       autovalidateMode: autovalidateMode,
       decoration: InputDecoration(
           filled: true,

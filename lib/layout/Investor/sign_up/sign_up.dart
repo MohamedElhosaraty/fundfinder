@@ -15,7 +15,7 @@ class _Sign_upState extends State<Sign_Up> {
 
   bool isPassword = false;
   bool isPassword1 = false;
-  GlobalKey<FormState> formState =  GlobalKey<FormState>();
+  GlobalKey<FormState> _formState =  GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
@@ -26,7 +26,7 @@ class _Sign_upState extends State<Sign_Up> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: formState,
+          key: _formState,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Column(
@@ -66,6 +66,12 @@ class _Sign_upState extends State<Sign_Up> {
                   height: 15,
                 ),
                 defaultTextFormFiled(
+                  validate: (value) {
+                    if (value == null || value.contains("@gmail.com") == false){
+                      return "Enter valid Email";
+                    }
+                    return null;
+                  },
                   controller: emailController,
                   labelText: 'Email',
                   labelStyle: TextStyle(
@@ -80,6 +86,12 @@ class _Sign_upState extends State<Sign_Up> {
                   height: 15,
                 ),
                 defaultTextFormFiled(
+                  validate:  (value) {
+                    if (value == null || value.length < 5){
+                      return " Enter valid Password";
+                    }
+                    return null;
+                  },
                   labelText: 'Password',
                   obscureText: isPassword,
                   labelStyle: TextStyle(
@@ -101,6 +113,11 @@ class _Sign_upState extends State<Sign_Up> {
                 ),
 
                 defaultTextFormFiled(
+                    validate:  (value) {
+                      if (value == null || value.length < 5){
+                        return " The Password is Incorrect";
+                      }
+                    },
                   labelText: 'Confirm Password',
                   obscureText: isPassword1,
                   labelStyle: TextStyle(
@@ -126,7 +143,14 @@ class _Sign_upState extends State<Sign_Up> {
                     ),
                     text: "Sign Up",
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Splash_Screen(),));
+                      if (_formState.currentState!.validate()){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Success')
+                        ),
+                        );
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Splash_Screen(),));
+
+                      }
                     },),
                 SizedBox(
                   height: 20,

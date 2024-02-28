@@ -14,7 +14,7 @@ class Sign_Up1 extends StatefulWidget {
 class _Sign_up1State extends State<Sign_Up1> {
 
   bool isPassword = false;
-  GlobalKey<FormState> formState =  GlobalKey<FormState>();
+  GlobalKey<FormState> _formState =  GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
@@ -25,7 +25,7 @@ class _Sign_up1State extends State<Sign_Up1> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: formState,
+          key: _formState,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Column(
@@ -81,6 +81,12 @@ class _Sign_up1State extends State<Sign_Up1> {
                   height: 15,
                 ),
                 defaultTextFormFiled(
+                  validate: (value) {
+                    if (value == null || value.contains("@gmail.com") == false){
+                      return "Enter valid Email";
+                    }
+                    return null;
+                  },
                   controller: emailController,
                   labelText: 'Company Email',
                   labelStyle: TextStyle(
@@ -95,6 +101,12 @@ class _Sign_up1State extends State<Sign_Up1> {
                   height: 15,
                 ),
                 defaultTextFormFiled(
+                    validate:  (value) {
+                      if (value == null || value.length < 5){
+                        return " Enter valid Password";
+                      }
+                      return null;
+                    },
                     labelText: 'Company Password',
                     obscureText: isPassword,
                     labelStyle: TextStyle(
@@ -121,7 +133,13 @@ class _Sign_up1State extends State<Sign_Up1> {
                   ),
                   text: "Follow",
                   onPressed: () {
-                    navigateAndFinish(context, Sign_Up2());
+                    if (_formState.currentState!.validate()){
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Success')
+                        ),
+                      );
+                      navigateAndFinish(context, Sign_Up2());
+                    }
                   },),
               ],
             ),

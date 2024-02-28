@@ -16,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   bool isPassword = false;
+  GlobalKey<FormState> _formState =  GlobalKey<FormState>();
+
 
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -94,91 +96,115 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (artboard != null)
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 400,
-                  child: Rive(artboard: artboard!),
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child:  defaultTextFormFiled(
-                  onTap: lookAround,
-                  onChanged: ((value) => moveEyes(value)),
-                  controller: emailController,
-                  labelText: 'Email',
-                  labelStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue[300]
+        child: Form(
+          key: _formState,
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (artboard != null)
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 400,
+                    child: Rive(artboard: artboard!),
                   ),
-                  prefixIcon:const Icon(
-                    Icons.email,color: Colors.blueAccent,),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: defaultTextFormFiled(
-                    onTap: handsUpOnEyes,
-                    labelText: 'Password',
-                    obscureText: isPassword,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child:  defaultTextFormFiled(
+
+                    validate: (value) {
+                      if (value == null || value.contains("@gmail.com") == false){
+                        return "Enter valid Email";
+                      }
+                      return null;
+                    },
+                    onTap: lookAround,
+                    onChanged: ((value) => moveEyes(value)),
+                    controller: emailController,
+                    labelText: 'Email',
                     labelStyle: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue[300]
                     ),
                     prefixIcon:const Icon(
-                      Icons.lock,color: Colors.blueAccent,),
-                    suffixIcon: isPassword ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-                  onTap1: (){
-                    setState(() {
-                      isPassword = !isPassword;
-                    });
-                  }
-
-                ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: defaultBottom(
-                  color: Color(0xffb73e60),
-                  style: TextStyle(
-                      fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
+                      Icons.email,color: Colors.blueAccent,),
                   ),
-                  text: "Sign Up",
-                  onPressed: () {
-                    loginClick();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Splash_Screen(),));
-                  },),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    text(text: 'Don\'t have an Account?',color: Colors.black,),
-                    InkWell(
-                        onTap: (){
-                           navigateTo(context, Sign_Up());
-                        },
-                        child: text(text: '     Sign Up ',color: Colors.blueAccent,)),
-                  ],
                 ),
-              )
-            ],
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: defaultTextFormFiled(
+                      validate:  (value) {
+                        if (value == null || value.length < 5){
+                          return " Enter valid Password";
+                        }
+                        return null;
+                      },
+                      onTap: handsUpOnEyes,
+                      labelText: 'Password',
+                      obscureText: isPassword,
+                      labelStyle: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[300]
+                      ),
+                      prefixIcon:const Icon(
+                        Icons.lock,color: Colors.blueAccent,),
+                      suffixIcon: isPassword ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
+                    onTap1: (){
+                      setState(() {
+                        isPassword = !isPassword;
+                      });
+                    }
+
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: defaultBottom(
+                    color: Color(0xffb73e60),
+                    style: TextStyle(
+                        fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
+                    ),
+                    text: "Sign Up",
+                    onPressed: () {
+                      loginClick();
+                      if (_formState.currentState!.validate()){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Success')
+                          ),
+                        );
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Splash_Screen(),));
+
+                      }
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Splash_Screen(),));
+                    },),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      text(text: 'Don\'t have an Account?',color: Colors.black,),
+                      InkWell(
+                          onTap: (){
+                             navigateTo(context, Sign_Up());
+                          },
+                          child: text(text: '     Sign Up ',color: Colors.blueAccent,)),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
