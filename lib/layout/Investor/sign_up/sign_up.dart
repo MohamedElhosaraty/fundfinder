@@ -2,7 +2,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/layout/Investor/login.dart';
 import 'package:fundfinder/modules/splash.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
+import 'package:fundfinder/shared/components/Textbest.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
+import 'package:fundfinder/shared/components/text_form.dart';
 
 class Sign_Up extends StatefulWidget {
   const Sign_Up({super.key});
@@ -52,7 +56,7 @@ class _Sign_upState extends State<Sign_Up> {
                   height: 100,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                   labelText: 'Name',
                   labelStyle: TextStyle(
                     fontSize: 20,
@@ -65,7 +69,7 @@ class _Sign_upState extends State<Sign_Up> {
                 const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                   validate: (value) {
                     if (value == null || value.contains("@gmail.com") == false){
                       return "Enter valid Email";
@@ -85,7 +89,7 @@ class _Sign_upState extends State<Sign_Up> {
                const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                   validate:  (value) {
                     if (value == null || value.length < 5){
                       return " Enter valid Password";
@@ -112,7 +116,7 @@ class _Sign_upState extends State<Sign_Up> {
                   height: 15,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                     validate:  (value) {
                       if (value == null || value.length < 5){
                         return " The Password is Incorrect";
@@ -137,7 +141,7 @@ class _Sign_upState extends State<Sign_Up> {
                 SizedBox(
                   height: 100,
                 ),
-                defaultBottom(
+                ContainerButton(
                     style: TextStyle(
                         fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
                     ),
@@ -158,12 +162,12 @@ class _Sign_upState extends State<Sign_Up> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    text(text: 'Already have an Account?',color: Colors.black,),
+                    TextBest(text: 'Already have an Account?',color: Colors.black,),
                     InkWell(
                         onTap: (){
                             navigateTo(context, LoginScreen());
                         },
-                        child: text(text: '     Login ',color: Colors.blueAccent,)),
+                        child: TextBest(text: '     Login ',color: Colors.blueAccent,)),
                   ],
                 )
             ],

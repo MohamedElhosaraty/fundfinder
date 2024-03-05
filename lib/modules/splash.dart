@@ -1,7 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/modules/onboarding.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
 import 'package:lottie/lottie.dart';
 
 class Splash_Screen extends StatefulWidget {

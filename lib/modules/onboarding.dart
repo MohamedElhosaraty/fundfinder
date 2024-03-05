@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fundfinder/model/onboard_model.dart';
 import 'package:fundfinder/modules/welcome.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onborading_Screen extends StatefulWidget {
@@ -120,7 +122,7 @@ class _Onborading_ScreenState extends State<Onborading_Screen> {
             SizedBox(
               height: 32,
             ),
-            defaultBottom(
+            ContainerButton(
               style: TextStyle(
                   fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
               ),

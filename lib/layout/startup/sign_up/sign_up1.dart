@@ -2,7 +2,10 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/layout/startup/sign_up/sign_up2.dart';
 import 'package:fundfinder/modules/splash.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
+import 'package:fundfinder/shared/components/text_form.dart';
 
 class Sign_Up1 extends StatefulWidget {
   const Sign_Up1({super.key});
@@ -51,7 +54,7 @@ class _Sign_up1State extends State<Sign_Up1> {
                   height: 100,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                   labelText: 'Company Name',
                   labelStyle: TextStyle(
                       fontSize: 20,
@@ -65,7 +68,7 @@ class _Sign_up1State extends State<Sign_Up1> {
                   height: 15,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                   labelText: 'Founders',
                   obscureText: isPassword,
                   labelStyle: TextStyle(
@@ -80,7 +83,7 @@ class _Sign_up1State extends State<Sign_Up1> {
                 const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                   validate: (value) {
                     if (value == null || value.contains("@gmail.com") == false){
                       return "Enter valid Email";
@@ -100,7 +103,7 @@ class _Sign_up1State extends State<Sign_Up1> {
                 const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                     validate:  (value) {
                       if (value == null || value.length < 5){
                         return " Enter valid Password";
@@ -127,7 +130,7 @@ class _Sign_up1State extends State<Sign_Up1> {
                 SizedBox(
                   height: 100,
                 ),
-                defaultBottom(
+                ContainerButton(
                   style: TextStyle(
                       fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
                   ),

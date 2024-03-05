@@ -2,7 +2,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/layout/startup/login.dart';
 import 'package:fundfinder/modules/splash.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
+import 'package:fundfinder/shared/components/Textbest.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
+import 'package:fundfinder/shared/components/text_form.dart';
 
 class Sign_Up2 extends StatefulWidget {
   const Sign_Up2({super.key});
@@ -51,7 +55,7 @@ class _Sign_up2State extends State<Sign_Up2> {
                   height: 100,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                   labelText: 'Industry',
                   labelStyle: TextStyle(
                       fontSize: 20,
@@ -63,7 +67,7 @@ class _Sign_up2State extends State<Sign_Up2> {
                   height: 15,
                 ),
 
-                defaultTextFormFiled(
+                TextForm(
                   labelText: 'Description',
                   obscureText: isPassword,
                   labelStyle: TextStyle(
@@ -76,7 +80,7 @@ class _Sign_up2State extends State<Sign_Up2> {
                 const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                   controller: emailController,
                   labelText: 'Number of Employees',
                   labelStyle: TextStyle(
@@ -88,7 +92,7 @@ class _Sign_up2State extends State<Sign_Up2> {
                 const SizedBox(
                   height: 15,
                 ),
-                defaultTextFormFiled(
+                TextForm(
                     labelText: 'Investor',
                     obscureText: isPassword,
                     labelStyle: TextStyle(
@@ -101,7 +105,7 @@ class _Sign_up2State extends State<Sign_Up2> {
                 SizedBox(
                   height: 100,
                 ),
-                defaultBottom(
+                ContainerButton(
                   style: TextStyle(
                       fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
                   ),
@@ -115,12 +119,12 @@ class _Sign_up2State extends State<Sign_Up2> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    text(text: 'Already have an Account?',color: Colors.black,),
+                    TextBest(text: 'Already have an Account?',color: Colors.black,),
                     InkWell(
                         onTap: (){
                             navigateTo(context, const Login_StartUp());
                         },
-                        child: text(text: '     Login ',color: Colors.blueAccent,)),
+                        child: TextBest(text: '     Login ',color: Colors.blueAccent,)),
                   ],
                 )
               ],

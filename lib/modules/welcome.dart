@@ -2,7 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fundfinder/layout/Investor/sign_up/sign_up.dart';
 import 'package:fundfinder/layout/startup/sign_up/sign_up1.dart';
-import 'package:fundfinder/shared/components.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/navigator2.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
 import 'package:lottie/lottie.dart';
 
 class Welcome_Screen extends StatelessWidget {
@@ -42,7 +44,7 @@ class Welcome_Screen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              defaultBottom(
+              ContainerButton(
                 width: MediaQuery.of(context).size.width*.40,
                   style: TextStyle(
                     fontSize: 20,
@@ -53,7 +55,7 @@ class Welcome_Screen extends StatelessWidget {
                 navigateAndFinish(context, Sign_Up1());
 
               }),
-              defaultBottom(
+              ContainerButton(
                   width: MediaQuery.of(context).size.width*.40,
                   style: TextStyle(
                       fontSize: 20,

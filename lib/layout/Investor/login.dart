@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fundfinder/layout/Investor/sign_up/sign_up.dart';
 import 'package:fundfinder/modules/splash.dart';
+import 'package:fundfinder/shared/components/Textbest.dart';
+import 'package:fundfinder/shared/components/containerbutton.dart';
+import 'package:fundfinder/shared/components/navigatorto.dart';
+import 'package:fundfinder/shared/components/text_form.dart';
 import 'package:rive/rive.dart';
 
-import '../../shared/components.dart';
+import '../../shared/navigator2.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -110,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child:  defaultTextFormFiled(
+                  child:  TextForm(
 
                     validate: (value) {
                       if (value == null || value.contains("@gmail.com") == false){
@@ -136,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: defaultTextFormFiled(
+                  child: TextForm(
                       validate:  (value) {
                         if (value == null || value.length < 5){
                           return " Enter valid Password";
@@ -167,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: defaultBottom(
+                  child: ContainerButton(
                     color: Color(0xffb73e60),
                     style: TextStyle(
                         fontSize: 20,fontWeight: FontWeight.w500,color: Colors.white
@@ -194,12 +198,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      text(text: 'Don\'t have an Account?',color: Colors.black,),
+                      TextBest(text: 'Don\'t have an Account?',color: Colors.black,),
                       InkWell(
                           onTap: (){
                              navigateTo(context, Sign_Up());
                           },
-                          child: text(text: '     Sign Up ',color: Colors.blueAccent,)),
+                          child: TextBest(text: '     Sign Up ',color: Colors.blueAccent,)),
                     ],
                   ),
                 )
